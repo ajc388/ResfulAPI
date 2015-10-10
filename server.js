@@ -2,10 +2,9 @@ var express = require('express');
 var port = 8080;
 var app = express();
 var pg = require('pg');
-
-app.use(express.bodyParser())
-
-var connectionString = 'postgres://localhost:5432/todo';
+var bodyParser = require('body-parser');
+app.use(bodyParser());
+var connectionString = 'postgres://postgres:xUbuntu1337!@localhost:5432/todo'
 var client = new pg.Client(connectionString);
 
 app.post('/api/v1/todos', function(req, res) {

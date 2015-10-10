@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/ajc388/ResfulAPI#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "pg": "^4.4.2"
   }
