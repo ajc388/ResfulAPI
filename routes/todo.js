@@ -1,5 +1,8 @@
-module.exports = function(app) {
+var pg = require('pg');
+var database = require('../config/database.js');
+var client = new pg.Client(database.url)
 
+module.exports = function(app) {
 	app.post('/api/v1/todos', function(req, res) {
 	    var results = [];
 
@@ -7,7 +10,7 @@ module.exports = function(app) {
 	    var data = {text: req.body.text, complete: false};
 
 	    // Get a Postgres client from the connection pool
-	    pg.connect(connectionString, function(err, client, done) {
+	    pg.connect(database.url, function(err, client, done) {
 	        // Handle connection errors
 	        if(err) {
 	          done();
@@ -38,7 +41,7 @@ module.exports = function(app) {
 	    var results = [];
 
 	    // Get a Postgres client from the connection pool
-	    pg.connect(connectionString, function(err, client, done) {
+	    pg.connect(database.url, function(err, client, done) {
 	        // Handle connection errors
 	        if(err) {
 	          done();
@@ -72,7 +75,7 @@ module.exports = function(app) {
 	    var data = {text: req.body.text, complete: req.body.complete};
 
 	    // Get a Postgres client from the connection pool
-	    pg.connect(connectionString, function(err, client, done) {
+	    pg.connect(database.url, function(err, client, done) {
 	        // Handle connection errors
 	        if(err) {
 	          done();
@@ -107,7 +110,7 @@ module.exports = function(app) {
 
 
 	    // Get a Postgres client from the connection pool
-	    pg.connect(connectionString, function(err, client, done) {
+	    pg.connect(database.url, function(err, client, done) {
 	        // Handle connection errors
 	        if(err) {
 	          done();
