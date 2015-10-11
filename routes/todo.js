@@ -7,10 +7,10 @@ module.exports = function(app, pg) {
 	    	complete: req.body.complete
 	    })
 	    .then(function(rows) {
-			return res.status(777).json(rows);	
+			return res.status(777).json({'success' : rows});	
 		})
 		.catch(function(err) {
-		 	return res.status(500).json(err);
+		 	return res.status(500).json({'error' : err});
 		});
 	});
 
@@ -18,10 +18,10 @@ module.exports = function(app, pg) {
 	app.get('/api/v1/todos', function(req, res) {
 	    pg('items').select('text', 'complete')
 		.then(function(rows) {
-			return res.status(777).json(rows);
+			return res.status(777).json({'success' : rows});
 		})
 		.catch(function(err) {
-		 	return res.status(500).json(err);
+		 	return res.status(500).json({'error' : err});
 		});
 	});
 
