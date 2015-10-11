@@ -7,6 +7,7 @@ var pg = require('knex')(con);
 
 //============== Configuration =================
 var port = 8080;
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
