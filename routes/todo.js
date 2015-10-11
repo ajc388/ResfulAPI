@@ -1,38 +1,20 @@
 module.exports = function(app, pg) {
-	// app.post('/api/v1/todos', function(req, res) {
-	//     var results = [];
+	//Insert statement using KNEX
+	//TODO: make into a transaction for practice
+	app.post('/api/v1/todos', function(req, res) {
+	    pg('items').insert({
+	    	text: req.body.text,
+	    	complete: req.body.complete
+	    })
+	    .then(function(rows) {
+			return res.status(777).json(rows);	
+		})
+		.catch(function(err) {
+		 	return res.status(500).json(err);
+		});
+	});
 
-	//     // Grab data from http request
-	//     var data = {text: req.body.text, complete: false};
-
-	//     // Get a Postgres client from the connection pool
-	//     pg.connect(database.url, function(err, client, done) {
-	//         // Handle connection errors
-	//         if(err) {
-	//           done();
-	//           console.log(err);
-	//           return res.status(500).json({ success: false, data: err});
-	//         } else {
-	// 	        // SQL Query > Insert Data
-	// 	        client.query("INSERT INTO items(text, complete) values($1, $2)", [data.text, data.complete]);
-
-	// 	        // SQL sQuery > Select Data
-	// 	        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-
-	// 	        // Stream results back one row at a time
-	// 	        query.on('row', function(row) {
-	// 	            results.push(row);
-	// 	        });
-
-	// 	        // After all data is returned, close connection and return results
-	// 	        query.on('end', function() {
-	// 	            done();
-	// 	            return res.json(results);
-	// 	        });
-	// 	    }
-	//     });
-	// });
-
+	//Get statement using KNEX
 	app.get('/api/v1/todos', function(req, res) {
 	    pg('items').select('text', 'complete')
 		.then(function(rows) {
