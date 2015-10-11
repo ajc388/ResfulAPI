@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var con = require('./config/conConfig.js');
+var con = require('./config/connection.js');
 var pg = require('knex')(con);
 
 //============== Configuration =================
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 
 //=================== ROUTES ===================
-require('./routes/todo.js')(app, pg);
+require('./routes/routes.js')(app, pg);
 
 //================ LISTENING ===================
 app.listen(port, function() {
