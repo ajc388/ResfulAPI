@@ -1,8 +1,4 @@
-var pg = require('pg');
-var database = require('../config/database.js');
-var client = new pg.Client(database.url)
-
-module.exports = function(app) {
+module.exports = function(app, pg) {
 	app.post('/api/v1/todos', function(req, res) {
 	    var results = [];
 
