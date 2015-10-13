@@ -1,21 +1,44 @@
 // Update with your config settings.
 
 module.exports = {
-
-    client: 'postgresql',
-    connection : 
-    {
-        host     : 'localhost',
-        user     : 'postgres',
-        password : 'xUbuntu1337!',
-        database : 'todo'
+    development: {
+        client: 'postgresql',
+        connection : 
+        {
+            host     : 'localhost',
+            user     : 'postgres',
+            password : 'xUbuntu1337!',
+            database : 'todo'
+        },
+        pool : 
+        {
+            min : 1, 
+            max : 3
+        },
+        migrations: {
+            tableName: 'migrations'
+        },
+        seeds: {
+            directory: 'seeds'
+        }
     },
-    pool : 
-    {
-        min : 2, 
-        max : 10
-    },
-    migrations: {
-        tableName: 'migrations'
+    production : {
+        client : 'postgresql',
+        connection : {
+            host     : 'localhost',
+            user     : 'postgres',
+            password : 'xUbuntu1337!',
+            database : 'todo'
+        },
+        pool : {
+            min : 2,
+            max : 10
+        },
+        migrations: {
+          tableName: 'migrations'
+        },
+        seeds: {
+            directory: 'seeds'
+        }
     }
 };

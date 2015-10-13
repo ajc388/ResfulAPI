@@ -1,6 +1,6 @@
 //=================== SETUP ====================
 var port = 8080;
-var environment = 'dev';
+var environment = 'development';
 
 var express = require('express')();
 var bodyParser = require('body-parser');
