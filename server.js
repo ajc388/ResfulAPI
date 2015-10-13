@@ -1,11 +1,13 @@
 //=================== SETUP ====================
+var port = 8080;
+var environment = 'dev';
+
 var express = require('express')();
 var bodyParser = require('body-parser');
-var con = require('./config/connection.js');
-var pg = require('knex')(con);
+var connectionConfiguration = require('./knexfile.js'); //has to be named knexfile
+var pg = require('knex')(connectionConfiguration[environment]);
 
-//============== Configuration =================
-var port = 8080;
+//============== CONFIGURATION =================
 express.use(bodyParser.urlencoded({extended: true}));
 express.use(bodyParser.json());
 
